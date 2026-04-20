@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Dashboard</h2>
+<p id="msg"></p>
+
+<script>
+async function load() {
+    let token = localStorage.getItem("token");
+
+    let res = await fetch("http://localhost:5000/dashboard", {
+        headers: { authorization: token }
+    });
+
+    let text = await res.text();
+    msg.innerText = text;
+}
+
+load();
+</script>
+
+</body>
+</html>
