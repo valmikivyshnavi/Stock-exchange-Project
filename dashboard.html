@@ -7,14 +7,18 @@
 
 <script>
 async function load() {
-    let token = localStorage.getItem("token");
+    try {
+        let token = localStorage.getItem("token");
 
-    let res = await fetch("http://localhost:5000/dashboard", {
-        headers: { authorization: token }
-    });
+        let res = await fetch("http://localhost:5000/dashboard", {
+            headers: { authorization: token }
+        });
 
-    let text = await res.text();
-    msg.innerText = text;
+        let text = await res.text();
+        document.getElementById("msg").innerText = text;
+    } catch {
+        alert("Error loading dashboard");
+    }
 }
 
 load();
